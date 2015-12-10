@@ -29,7 +29,9 @@ Access Thomas on `localhost:3333`. Thomas watches for any changes you make and r
 - [Templates](docs/Templates.md)
 - [Slide Methods](docs/Slide Methods.md)
 - [DOM Structure](docs/DOM Structure.md)
-- JS Libraries
+- CSS components
+  - [Blocks](docs/css/Blocks.md)
+- JS libraries
   - [Device](docs/js/Device.md)
   - [DraggyView](docs/js/DraggyView.md)
   - [Easie](docs/js/Easie.md)
