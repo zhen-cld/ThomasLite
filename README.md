@@ -26,9 +26,9 @@ Access Thomas on `localhost:3333`. Thomas watches for any changes you make and r
 
 ### More information
 
-- [Templates][docs/Templates.md]
-- [Slide Methods][docs/Slide Methods.md]
-- [DOM Structure][docs/DOM Structure.md]
+- [Templates](docs/Templates.md)
+- [Slide Methods](docs/Slide Methods.md)
+- [DOM Structure](docs/DOM Structure.md)
 
 [Node]: https://nodejs.org/en/
 [Brunch]: http://brunch.io
