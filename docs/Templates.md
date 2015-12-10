@@ -5,7 +5,7 @@
 Generate a new template using [scaffolt].
 
 ```bash
-$ scaffolt template your-template-name
+scaffolt template your-template-name
 ```
 
 This will create:
@@ -24,7 +24,7 @@ Models are [YAML] files that describe the data structure of a template.
 
 They must declare some properties at the top level:
 
-```
+```yaml
 title: "name-of-template"
 display: "Name of Template"
 model:
@@ -37,7 +37,7 @@ The display property is used to by the CMS in place of the title field.
 
 Each property in the model's description takes the following structure, depending on it's type:
 
-```
+```yaml
 textExample:
   type:     "text"
   default:  "Default text"
