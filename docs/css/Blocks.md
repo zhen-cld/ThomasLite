@@ -31,4 +31,4 @@ Flex blocks are useful for centering content of an indiscriminate size within a 
 .block-flex-child
 ```
 
-[Blocks](../img/blocks.png)
+![Blocks](../img/blocks.png)
