@@ -35,6 +35,7 @@ Access Thomas on `localhost:3333`. Thomas watches for any changes you make and r
   - [Easie](docs/js/Easie.md)
   - [Prefix](docs/js/Prefix.md)
   - [Preload](docs/js/Preload.md)
+  - [Style](docs/js/Style.md)
 
 [Node]: https://nodejs.org/en/
 [Brunch]: http://brunch.io
