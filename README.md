@@ -31,6 +31,7 @@ Access Thomas on `localhost:3333`. Thomas watches for any changes you make and r
 - [DOM Structure](docs/DOM Structure.md)
 - CSS components
   - [Blocks](docs/css/Blocks.md)
+  - [Grids](docs/css/Grids.md)
 - JS libraries
   - [Device](docs/js/Device.md)
   - [DraggyView](docs/js/DraggyView.md)
