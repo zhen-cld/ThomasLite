@@ -24,5 +24,5 @@ Just set a transition on an element. Query the elements `offsetLeft` if
 a DOM refresh is required to trigger subsequent animations.
 
 ```coffee
-transitionEl:(el, transition, triggerRefresh)
+transitionEl(el, transition, triggerRefresh)
 ```
