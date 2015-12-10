@@ -6,12 +6,12 @@ Get information about the current device.
 Device = require("lib/device")
 ```
 
-```
-Device.dpi = window.devicePixelRatio or 1
+```coffee
+Device.dpi  # pixel ratio of the device
 
 Device.events =
   pointer:
-    isTouch # isTouch
+    isTouch # is a touch screen
     start   # "touchstart" or "mousedown"
     move    # "touchmove" or "mousemove"
     end     # "touchend" or "mouseup"

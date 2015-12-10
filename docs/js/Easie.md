@@ -2,13 +2,13 @@
 
 Easing functions by [J. Jeffers](https://github.com/jimjeffers/Easie), ported from [Robert Penner's Easing Equations in CoffeeScript](http://robertpenner.com/easing/).
 
-```
+```coffee
 Easie = require("lib/easie")
 ```
 
 The following methods are available:
 
-```
+```coffee
 backIn(time, begin, change, duration, overshoot = 1.70158)
 backOut(time, begin, change, duration, overshoot = 1.70158)
 backInOut(time, begin, change, duration, overshoot = 1.70158)

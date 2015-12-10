@@ -12,56 +12,64 @@ dropping logic rules.
 DraggyView = require("views/components/draggy")
 ```
 
-Properties:
+#### Example
 
+```coffee
+myDraggy = new DraggyView el, { minX: 0, maxX: 100, lock: "y" }
+myDraggy.on "drag", -> do something
+myDraggy.on "drag", -> do something
 ```
-  draggy.x: Current x position
-  draggy.y: Current y position
-  draggy.t: Current rotation (theta) adjusted to the *top of the circle*
+
+#### Properties
+
+```coffee
+draggy.x: Current x position
+draggy.y: Current y position
+draggy.t: Current rotation (theta) adjusted to the *top of the circle*
 ```
 
 These attributes are also available as data attributes on draggy.el.
 
 DraggyView also keeps track of the velocity of the user's movement.
 
-```
+```coffee
 draggy.velocity:
-  x: horizontal pixel movement per ms
-  y: vertical pixel movement per ms
-  t: angle of movement
-  dir: "up", "right", "down", "left" or "none"
+  x    # horizontal pixel movement per ms
+  y    # vertical pixel movement per ms
+  t    # angle of movement
+  dir  # "up", "right", "down", "left" or "none"
 ```
 
 Velocity is a measurement of movement occuring in the last 300ms.
 Use `getVelocity(ms)` to include movement over a different duration.
 
-Public methods:
+#### Public methods
 
 ```coffee
-  draggy.lock()
-  draggy.unlock()
-  draggy.isWithin(bounds)
-  draggy.distanceTo(x, y, opts)
-  draggy.reset({x, y, t})
-  draggy.getVelocity(ms)
+draggy.lock()
+draggy.unlock()
+draggy.isWithin({top, left, bottom, right})
+draggy.distanceTo(x, y, {fromCenter, offsetX, offsetY})
+draggy.reset({x, y, t})
+draggy.getVelocity(ms)
 ```
 
-Events:
+#### Events
 
-```
-  drag: (draggy, isFirstDrag)
-  drop: (draggy)
+```coffee
+drag(draggy, isInitial)
+drop(draggy, isReset)
 ```
 
-Options:
+#### Options
 
-```
-  minX: Minimum x position
-  maxX: Maximum x position
-  minY: Minimum y position
-  maxY: Maximum y position
-  lock: "x" or "y"
-  radius: Radius of circular bounds
-  isParent: False if the element transforms, true if a child will instead
-  allowPropagation: Stop immediate event propagation on touch start
+```coffee
+minX: Minimum x position
+maxX: Maximum x position
+minY: Minimum y position
+maxY: Maximum y position
+lock: "x" or "y"
+radius: Radius of circular bounds
+isParent: False if the element transforms, true if a child will instead
+allowPropagation: Stop immediate event propagation on touch start
 ```

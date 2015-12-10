@@ -6,6 +6,10 @@ Prefix css styles with their vendor prefixes, when required.
 Prefix = require("lib/prefix")
 ```
 
+#### Examples
+
 ```coffee
-Prefx "transform"         # -webkit-transform
+Prefx "transform"    # webkitTransform
+Prefx "transition"   # webkitTransition
+Prefx "animation"    # webkitAnimation
 ```
