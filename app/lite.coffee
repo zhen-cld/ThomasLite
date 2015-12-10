@@ -17,9 +17,9 @@ Lite =
   initialize: (apikey) ->
     from = "http://localhost:3333"
     files = [
-      "/css/app.css"
-      "/js/vendor.js"
-      "/js/app.js"
+      "css/app.css"
+      "js/vendor.js"
+      "js/app.js"
     ]
 
     do next = ->
