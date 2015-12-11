@@ -26,9 +26,14 @@ Access Thomas on `localhost:3333`. Thomas watches for any changes you make and r
 
 ### More information
 
-- [Templates](docs/Templates.md)
-- [Slide Methods](docs/Slide Methods.md)
-- [DOM Structure](docs/DOM Structure.md)
+- [Templates](docs/Templates.md) documents the different files needed by a
+  template and how to create new templates.
+
+- [Slide Methods](docs/Slide Methods.md) give an overview of common methods
+  made available to every template view.
+
+- [DOM Structure](docs/DOM Structure.md) shows an overview of how Thomas is
+  structured.
 
 - **CSS components** provide highly abstracted styles to avoid repetitive CSS
   declarations bloating the core CSS framework. Always check whether a class

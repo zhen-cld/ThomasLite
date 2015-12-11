@@ -5,17 +5,17 @@
 There are several ready-made classed if you want content to transition into the screen smoothly when a user goes to your template.
 
 ```css
-// Fade in and slide...
+/* Fade in and slide... */
 .slide-up
 .slide-down
 .slide-left
 .slide-right
 
-// Fade in and scale...
+/* Fade in and scale... */
 .scale-up
 .scale-down
 
-// Just fade in...
+/* Just fade in... */
 .fade-in
 ```
 
@@ -29,8 +29,9 @@ There are four in-built animation classes, which are useful for demonstrating po
 @keyframes bounce-out
 @keyframes pulse
 
-.example-class
+.example-class {
   animation: shake 600ms 1
+}
 ```
 
 #### Delays
