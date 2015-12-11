@@ -29,10 +29,18 @@ Access Thomas on `localhost:3333`. Thomas watches for any changes you make and r
 - [Templates](docs/Templates.md)
 - [Slide Methods](docs/Slide Methods.md)
 - [DOM Structure](docs/DOM Structure.md)
-- CSS components
+
+- **CSS components** provide highly abstracted styles to avoid repetitive CSS
+  declarations bloating the core CSS framework. Always check whether a class
+  aleady exists, and use these styles to help maintain a lightweight codebase.
   - [Blocks](docs/css/Blocks.md)
   - [Grids](docs/css/Grids.md)
-- JS libraries
+  - [Content Alignment](docs/css/Content Alignment.md)
+  - [Typography](docs/css/Typography.md)
+  - [Animations and Transitions](docs/css/Animations and Transitions.md)
+
+- **JS libraries** provide core functionality in a modular and re-useable
+  format. Like Thomas's CSS, use pre-existing modules when appropriate.
   - [Device](docs/js/Device.md)
   - [DraggyView](docs/js/DraggyView.md)
   - [Easie](docs/js/Easie.md)
