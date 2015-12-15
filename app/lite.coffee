@@ -1,5 +1,4 @@
 load = (name, path, apikey, done) ->
-  console.log(name, path)
   if /\.js$/.test name
     el = document.createElement("script")
     el.setAttribute("type", "text/javascript")
