@@ -78,14 +78,23 @@ booleanExample:
 
 Every template is driven by a Backbone view. It's got an events hash and all of the other goodies from [Backbone].
 
-If a model declares an `answer` property, it should also declare an `isCorrect` method (used when displaying the answer). This should return a boolean based on the user's interaction. For example, the multiple choice game confirms that the number of active, correct "selectables" matches the total number of correct answers.
+If a model declares an `answer` property, the view should declare an `isCorrect` method (used when displaying the answer). This should return a boolean based on the user's interaction. For example, the multiple choice game confirms that the number of active, correct selectable answers matches the total number of correct answers.
+
+```coffee
+isCorrect: ->
+  _(@getEl("answers"))
+    .filter((el) -> el.classList.contains("correct"))
+    .difference(@getEl("selected"))
+    .isEmpty()
+```
 
 [Backbone]: http://backbonejs.org/
 
 #### Engine Templates
 
-Engine templates render the model's data, ready for the user's interaction. Templates are JADE compiled into Javacript functions. They are rendered with the model's data as locals. [`moment`], [`_`], [`Big`], [`written`] and [`typogr`] are available globally in all templates.
+Engine templates render the model's data, ready for the user's interaction. Templates are [Jade] compiled into Javacript functions. They are rendered with the model's data as locals. [`moment`], [`_`], [`Big`], [`written`] and [`typogr`] are available globally in all templates.
 
+[Jade]: http://jade-lang.com/
 [`_`]: https://lodash.com/
 [`moment`]: http://momentjs.com/
 [`Big`]: https://github.com/MikeMcl/big.js/
@@ -94,6 +103,6 @@ Engine templates render the model's data, ready for the user's interaction. Temp
 
 #### Engine Styles
 
-Engine styles determine specific styles for a template, scope to slides with a matching class name. It's important to leave this scoping in place, otherwise styles may creep into other slides unintentionally. Thomas requires styles to be added as [SASS] files. It's syntax matches nicley with the other languages in play.
+Engine styles determine specific styles for a template, scoped to slides with a matching class name. It's important to leave this scoping in place, otherwise styles may creep into other slides unintentionally. Thomas requires styles to be added as [SASS], rather than `scss` files. It's syntax matches nicley with the other languages in play.
 
 [SASS]: http://sass-lang.com
