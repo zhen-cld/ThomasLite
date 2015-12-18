@@ -1,14 +1,17 @@
 load = (name, path, apikey, done) ->
+  fullPath = "#{path}#{name}"
+  fullPath += "?key=#{apikey}" if apikey?
+
   if /\.js$/.test name
     el = document.createElement("script")
     el.setAttribute("type", "text/javascript")
-    el.setAttribute("src", "#{path}/#{name}?key=#{apikey}")
+    el.setAttribute("src", fullPath)
 
   else if /\.css$/.test name
     el = document.createElement("link")
     el.setAttribute("rel", "stylesheet")
     el.setAttribute("type", "text/css")
-    el.setAttribute("href", "#{path}/#{name}?key=#{apikey}")
+    el.setAttribute("href", fullPath)
 
   el.addEventListener "load", done
   document.getElementsByTagName("head")[0].appendChild(el)
