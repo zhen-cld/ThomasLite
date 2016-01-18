@@ -1,29 +1,22 @@
-//- .full-screen.construct-canvas-container
-  canvas.construct-canvas
-
 .block-hor-xl.content-lg-fill.content-sm-ver.text-center.strikeout-words
   .content-lg-ver
     h1.fade-in
-      for word, i in components
+      for component, i in components
         .word(
-          data-replaces=word.incorrect && word.replaces
-          class=word.incorrect && "word-incorrect"
+          class=component.hidden && "word-hidden"
+          data-word=component.word
         )
-          div(class=word.klass)
-            for letter in word.incorrect || word.replaces
-              span.letter-btn= letter
+          div(class=component.klass)
+            if component.hidden
+              for letter in component.word
+                if letter === " "
+                  | &nbsp;
+                else
+                  span(data-letter=letter).hidden-letter= letter
+            else
+              != component.word
 
-    h3!= subtitle
-
-  .word-letters
-    ul
-      li.letter o
-      li.letter w
-      li.letter r
-      li.letter d
-      li.letter e
-      li.letter s
-      li.letter p
+.word-letters
 
 .slide-footer.slide-up
   .slide-footer-prompt!= prompt

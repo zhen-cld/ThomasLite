@@ -14,18 +14,12 @@ model:
     default: >
       Cross out the incorrect words from this sentence to make it correct.
 
-  subtitle:
-    type: text
-
   words:
     min: 1
     max: 8
     type:
       -
-        incorrect:
-          type: text
-        replaces:
-          type: text
+        type: text
 
   answer:
     text:
@@ -62,12 +56,8 @@ examples:
     subtitle: ""
     prompt: Fill in the missing words
     words:
-      -
-        incorrect: words
-        replaces: words
-      -
-        incorrect: this
-        replaces: this
+      - words
+      - this
 
     answer:
       text: You can use strike-out to get people thinking about your message.
