@@ -1,5 +1,5 @@
-.full-screen.construct-canvas-container
-  canvas.strikeout-canvas
+//- .full-screen.construct-canvas-container
+  canvas.construct-canvas
 
 .block-hor-xl.content-lg-fill.content-sm-ver.text-center.strikeout-words
   .content-lg-ver
@@ -10,11 +10,23 @@
           class=word.incorrect && "word-incorrect"
         )
           div(class=word.klass)
-            != word.incorrect || word.replaces
+            for letter in word.incorrect || word.replaces
+              span.letter-btn= letter
 
     h3!= subtitle
+
+  .word-letters
+    ul
+      li.letter o
+      li.letter w
+      li.letter r
+      li.letter d
+      li.letter e
+      li.letter s
+      li.letter p
 
 .slide-footer.slide-up
   .slide-footer-prompt!= prompt
   .slide-footer-touched
     .btn.btn-muted.btn-done OK, I'm done
+
