@@ -56,7 +56,7 @@ examples:
     subtitle: ""
     prompt: Fill in the missing words
     words:
-      - words
+      - missing
       - this
 
     answer:
