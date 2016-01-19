@@ -15,6 +15,10 @@ class ConstructView extends SlideView
   show: ->
     @setEl @el.querySelector(".word-letters"), "letters"
 
+  onRefresh: ->
+    super
+    @show()
+
   # The serialize method is your chance to filter data on it's way from the CMS
   # to the template. Do the heavy-lifting here rather than putting the logic
   # into the jade template.
