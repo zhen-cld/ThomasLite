@@ -5,7 +5,7 @@
     border-radius: 4px
     transition: all 300ms
     margin: 10px 0 10px 0
-    @media (max-width: 768px)
+    @media (max-width: 767px)
       margin: 2px 0 2px 0
     &.active
       background-color: rgba(#000,0.2)
@@ -25,7 +25,10 @@
     border-bottom: 2px solid #fff
     display: inline-block
     transition: all 300ms
-    @media (max-width: 768px)
+    @media (max-width: 1023px)
+      width: 40px
+      margin: 6px
+    @media (max-width: 767px)
       width: 16px
       margin: 4px
 
@@ -37,19 +40,18 @@
   .visible-letter
     color: #fff
 
-
   .word-letters
     position: absolute
     bottom: 0px
     left: 0
-    width: 1024px
+    width: 100%
     background-color: rgba(#000,0.2)
     text-align: center
-    padding: 35px
+    padding: 25px
     opacity: 0
     transition: all 300ms
     box-sizing: border-box
-    @media (max-width: 768px)
+    @media (max-width: 767px)
       width: 100%
       padding: 10px
 
@@ -64,9 +66,8 @@
     .letter
       display: inline-block
       background-color: rgba(#000,0.2)
-      margin-right: 20px
-      margin-bottom: 0
-      padding: 15px
+      margin: 7px
+      padding: 7px 15px
       border-radius: 10px
       font-size: 45px
       width: 30px
@@ -75,7 +76,7 @@
       opacity: 1
       transition: all 300ms
       transform: scale(1)
-      @media (max-width: 768px)
+      @media (max-width: 767px)
         font-size: 22px
         padding: 5px
         width: 18px
