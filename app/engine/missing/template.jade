@@ -1,0 +1,21 @@
+.block-hor-xl.content-lg-fill.content-sm-ver.text-center.strikeout-words
+  .content-lg-ver
+    h1.fade-in
+      for component, i in components
+        .word(
+          class=component.options && "word-hidden"
+          data-word=component.word
+        )
+          div(class=component.klass)
+            != component.word
+            if component.options
+              .missing-words
+                ul
+                  for opt in component.options
+                    li.option(data-word=opt)= opt
+
+.slide-footer.slide-up
+  .slide-footer-prompt!= prompt
+  .slide-footer-touched
+    .btn.btn-muted.btn-done OK, I'm done
+
