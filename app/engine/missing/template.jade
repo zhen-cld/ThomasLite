@@ -9,10 +9,10 @@
           div(class=component.klass)
             != component.word
             if component.options
-              .missing-words
+              .missing-words.draggy
                 ul
                   for opt in component.options
-                    li.option(data-word=opt)= opt
+                    li.option.draggy-btn(data-word=opt)= opt
 
 .slide-footer.slide-up
   .slide-footer-prompt!= prompt
