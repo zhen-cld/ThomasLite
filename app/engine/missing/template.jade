@@ -5,14 +5,18 @@
         .word(
           class=component.options && "word-hidden"
           data-word=component.word
+          data-index=component.index
         )
           div(class=component.klass)
             != component.word
             if component.options
               .missing-words.draggy
                 ul
-                  for opt in component.options
-                    li.option.draggy-btn(data-word=opt)= opt
+                  for opt, i in component.options
+                    li.option(
+                      data-word=opt
+                      data-index=i
+                    )= opt
 
 .slide-footer.slide-up
   .slide-footer-prompt!= prompt

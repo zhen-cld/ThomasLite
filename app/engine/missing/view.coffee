@@ -1,6 +1,5 @@
 SlideView = require("views/slide")
-
-theAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+Draggy = require("./components/draggy")
 
 class ConstructView extends SlideView
   template: require("./template")
@@ -11,6 +10,84 @@ class ConstructView extends SlideView
 
   show: ->
     @setEl @el.querySelector(".option"), "option"
+
+    draggies = @el.querySelectorAll(".draggy")
+
+    @draggies =
+      for el, i in draggies
+        draggy = new Draggy
+          el: el
+          lock: "x"
+          allowPropagation: true
+          # minY: 0
+          # maxY: el.offsetHeight
+
+        @listenTo draggy, "drag", @onDrag
+        @listenTo draggy, "drop", @onDrop
+
+        draggy.lock()
+        draggy
+
+    # @resetDraggies(@draggies)
+
+    @el.classList.add "ready"
+
+  onDrag: (draggy, isInitialDrag) ->
+    isActive = false
+    # rank = @getRanking(draggy)
+
+    # @resetDraggies(@draggiesInOrder(@draggies), draggy)
+    unless isInitialDrag
+      Backbone.trigger "canceltap"
+
+    @transformEl draggy.el,
+      y: draggy.y
+      scale: 1.05
+      transition: if isInitialDrag then "all 300ms" else "none"
+
+  onDrop: (draggy, isReset) ->
+    wordHeight = draggy.offset.height / 3
+
+    if draggy.y < -wordHeight
+      y = -wordHeight
+      index = 2
+    else if draggy.y > wordHeight
+      y = wordHeight
+      index = 0
+    else
+      y = 0
+      index = 1
+
+    {left, top, width, height} = draggy.offset
+
+    # rank = @getRanking(draggy)
+
+    if isReset
+      allWords   = draggy.el.querySelectorAll(".option")
+      activeWord = allWords[index]
+      activeData = activeWord.dataset.word
+      el = draggy.$el.parents(".word-hidden").get(0)
+      isCorrect = activeData is el.dataset.word
+
+      for word, i in allWords
+        word.classList.remove("active") if i isnt index
+
+      if isCorrect
+        el.classList.add "correct"
+        el.classList.remove "active"
+      else
+        activeWord.classList.add "active"
+
+      @transformEl draggy.el,
+        y: draggy.y
+        transition: "all 300ms"
+    else
+      # @resetDraggies(@draggiesInOrder(@draggies))
+
+      draggy.reset y: y
+
+      @setState("touched")
+
 
   onRefresh: ->
     super
@@ -40,33 +117,47 @@ class ConstructView extends SlideView
         klass: "delay-#{_.random(3)} scale-#{_.sample(["down", "up"])}"
         word: words[index]?.replaces or component
         options: words[index]? and options
+        index: index
 
     data
 
   activateWord: (e) ->
     el = e.currentTarget
 
-    if el is @getEl("active")
+    if el is @getEl("currentWord")
       return
     else
       e.stopImmediatePropagation()
-      @getEl("active")?.classList.remove "active"
-      @setEl el, "active"
+
+      index = el.dataset.index
+      draggy = @draggies[index]
+      draggy.unlock()
+
+      if @getEl("currentWord")?
+        prevIndex = @getEl("currentWord").dataset.index
+        @draggies[prevIndex].lock()
+        @getEl("currentWord").classList.remove "active"
+
+      @setEl el, "currentWord"
       el.classList.add "active"
 
   selectOption: (e) ->
     el = e.currentTarget
-    activeWord = @getEl("active")
+    activeWord = @getEl("currentWord")
+    index = el.dataset.index
 
-    @getEl(".option")?.classList.remove "active"
-    @setEl el, ".option"
-    el.classList.add "active"
+    @draggies[activeWord.dataset.index].reset
+      y: -(index - 1) * el.offsetHeight
 
-    isCorrect = el.dataset.word is activeWord.dataset.word
+    # @getEl(".option")?.classList.remove "active"
+    # @setEl el, ".option"
+    # el.classList.add "active"
 
-    if isCorrect
-      activeWord.classList.add "correct"
-      activeWord.classList.remove "active"
+    # isCorrect = el.dataset.word is activeWord.dataset.word
+
+    # if isCorrect
+    #   activeWord.classList.add "correct"
+    #   activeWord.classList.remove "active"
 
 
 module.exports = ConstructView
