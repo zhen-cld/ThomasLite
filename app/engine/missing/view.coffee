@@ -10,17 +10,13 @@ class ConstructView extends SlideView
 
   show: ->
     @setEl @el.querySelector(".option"), "option"
-
     draggies = @el.querySelectorAll(".draggy")
-
     @draggies =
       for el, i in draggies
         draggy = new Draggy
           el: el
           lock: "x"
           allowPropagation: true
-          # minY: 0
-          # maxY: el.offsetHeight
 
         @listenTo draggy, "drag", @onDrag
         @listenTo draggy, "drop", @onDrop
@@ -28,15 +24,10 @@ class ConstructView extends SlideView
         draggy.lock()
         draggy
 
-    # @resetDraggies(@draggies)
-
     @el.classList.add "ready"
 
   onDrag: (draggy, isInitialDrag) ->
     isActive = false
-    # rank = @getRanking(draggy)
-
-    # @resetDraggies(@draggiesInOrder(@draggies), draggy)
     unless isInitialDrag
       Backbone.trigger "canceltap"
 
@@ -60,8 +51,6 @@ class ConstructView extends SlideView
 
     {left, top, width, height} = draggy.offset
 
-    # rank = @getRanking(draggy)
-
     if isReset
       allWords   = draggy.el.querySelectorAll(".option")
       activeWord = allWords[index]
@@ -82,12 +71,8 @@ class ConstructView extends SlideView
         y: draggy.y
         transition: "all 300ms"
     else
-      # @resetDraggies(@draggiesInOrder(@draggies))
-
       draggy.reset y: y
-
       @setState("touched")
-
 
   onRefresh: ->
     super
@@ -97,11 +82,9 @@ class ConstructView extends SlideView
   # to the template. Do the heavy-lifting here rather than putting the logic
   # into the jade template.
   serialize: ->
-    data = super
-
+    data  = super
     title = data.title
     words = data.words
-
     title = "" if not title?
 
     for { replaces, incorrect }, i in words
@@ -123,23 +106,21 @@ class ConstructView extends SlideView
 
   activateWord: (e) ->
     el = e.currentTarget
+    return if el is @getEl("currentWord")
 
-    if el is @getEl("currentWord")
-      return
-    else
-      e.stopImmediatePropagation()
+    e.stopImmediatePropagation()
 
-      index = el.dataset.index
-      draggy = @draggies[index]
-      draggy.unlock()
+    index = el.dataset.index
+    draggy = @draggies[index]
+    draggy.unlock()
 
-      if @getEl("currentWord")?
-        prevIndex = @getEl("currentWord").dataset.index
-        @draggies[prevIndex].lock()
-        @getEl("currentWord").classList.remove "active"
+    if @getEl("currentWord")?
+      prevIndex = @getEl("currentWord").dataset.index
+      @draggies[prevIndex].lock()
+      @getEl("currentWord").classList.remove "active"
 
-      @setEl el, "currentWord"
-      el.classList.add "active"
+    @setEl el, "currentWord"
+    el.classList.add "active"
 
   selectOption: (e) ->
     el = e.currentTarget
@@ -148,16 +129,6 @@ class ConstructView extends SlideView
 
     @draggies[activeWord.dataset.index].reset
       y: -(index - 1) * el.offsetHeight
-
-    # @getEl(".option")?.classList.remove "active"
-    # @setEl el, ".option"
-    # el.classList.add "active"
-
-    # isCorrect = el.dataset.word is activeWord.dataset.word
-
-    # if isCorrect
-    #   activeWord.classList.add "correct"
-    #   activeWord.classList.remove "active"
 
 
 module.exports = ConstructView
