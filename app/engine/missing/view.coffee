@@ -48,10 +48,10 @@ class ConstructView extends SlideView
   onDrop: (draggy, isReset) ->
     wordHeight = draggy.offset.height / 3
 
-    if draggy.y < -wordHeight
+    if draggy.y <= -wordHeight
       y = -wordHeight
       index = 2
-    else if draggy.y > wordHeight
+    else if draggy.y >= wordHeight
       y = wordHeight
       index = 0
     else
@@ -66,8 +66,8 @@ class ConstructView extends SlideView
       allWords   = draggy.el.querySelectorAll(".option")
       activeWord = allWords[index]
       activeData = activeWord.dataset.word
-      el = draggy.$el.parents(".word-hidden").get(0)
-      isCorrect = activeData is el.dataset.word
+      el         = draggy.$el.parents(".word-hidden").get(0)
+      isCorrect  = activeData is el.dataset.word
 
       for word, i in allWords
         word.classList.remove("active") if i isnt index
